@@ -45,6 +45,8 @@ namespace Windows.UI.Xaml.Controls.Maps.Presenter
 
 			_internalMapView.OnCreate(null); // This otherwise the map does not appear
 
+			Loaded += (s, e) => OnControlLoaded();
+			Unloaded += (s, e) => OnControlUnloaded();
 		}
 
 		protected override void OnApplyTemplate()
@@ -96,7 +98,7 @@ namespace Windows.UI.Xaml.Controls.Maps.Presenter
 			_map.AnimateCamera(cameraUpdate);
 		}
 
-		protected override void OnLoaded()
+		private void OnControlLoaded()
 		{
 			_internalMapView.OnResume(); // This otherwise the map stay empty
 
@@ -107,7 +109,7 @@ namespace Windows.UI.Xaml.Controls.Maps.Presenter
 			base.OnLoaded();
 		}
 
-		protected override void OnUnloaded()
+		private void OnControlUnloaded()
 		{
 			// These line is required for the control to 
 			// stop actively monitoring the user's location.
