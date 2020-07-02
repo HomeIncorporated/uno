@@ -137,6 +137,8 @@ namespace SamplesApp.UITests
 
 		public FileInfo TakeScreenshot(string stepName, ScreenshotOptions options)
 		{
+			Console.WriteLine($"Taking screenshot for {stepName}");
+
 			var title = $"{TestContext.CurrentContext.Test.Name}_{stepName}"
 				.Replace(" ", "_")
 				.Replace(".", "_");
@@ -157,6 +159,8 @@ namespace SamplesApp.UITests
 
 				File.Move(fileInfo.FullName, destFileName);
 
+				Console.WriteLine($"Screenshot for AddTestAttachment {stepName}");
+
 				TestContext.AddTestAttachment(destFileName, stepName);
 
 				fileInfo = new FileInfo(destFileName);
@@ -168,8 +172,12 @@ namespace SamplesApp.UITests
 
 			if(options != null)
 			{
+				Console.WriteLine($"Screenshot for SetOptions {stepName}");
+
 				SetOptions(fileInfo, options);
 			}
+
+			Console.WriteLine($"Screenshot done {stepName}");
 
 			return fileInfo;
 		}

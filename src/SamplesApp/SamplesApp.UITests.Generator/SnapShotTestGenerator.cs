@@ -161,6 +161,7 @@ namespace Uno.Samples.UITest.Generator
 							{
 								builder.AppendLineInvariant($"Console.WriteLine(\"Running test [{testName}]\");");
 								builder.AppendLineInvariant($"Run(\"{test.symbol}\", waitForSampleControl: false);");
+								builder.AppendLineInvariant($"Console.WriteLine(\"Ran test [{testName}]\");");
 							}
 						}
 					}
